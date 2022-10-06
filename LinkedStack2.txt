@@ -1,0 +1,64 @@
+  Node top;
+    public LinkedStack(){
+        top=null;
+    }
+    public boolean isEmpty(){
+        return (top==null);
+    }
+    public void push(int element){
+        Node newnode=new Node();
+        newnode.item=element;
+        if(isEmpty()){
+            newnode.next=null;
+            top=newnode;
+        }
+        else{
+            newnode.next=top;
+            top=newnode;
+        }
+    }
+    public void pop(){
+        if(isEmpty())
+        {
+            System.out.println("no items to delete ");
+            return;
+        }
+        else{
+            Node delptr=new Node();
+            delptr=top;
+            top=top.next;
+            delptr=null;
+        }
+    }
+    public void Display(){
+       Node temp=new Node();
+       temp=top;
+       while(temp!=null){
+           System.out.print(temp.item+"  ");
+           temp=temp.next;
+       }
+    }
+    public int count(){
+        int counter=0;
+        Node temp=new Node();
+         temp=top;
+       while(temp!=null){
+           counter++;
+           temp=temp.next;
+       }
+       return counter;
+    }
+    public boolean isfound(int element){
+        boolean found=false;
+        Node temp=new Node();
+         temp=top;
+       while(temp!=null){
+          if(temp.item==element)
+              found=true;
+           temp=temp.next;
+       }
+       return found;
+    }
+    public int peek(){
+        return top.item;
+    }

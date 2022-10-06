@@ -1,0 +1,80 @@
+public class ArrQueue{
+    int front;
+    int rear;
+    int length;
+    final static int max_size=100;
+    int[] arr=new int [max_size];
+    public ArrQueue(){
+  
+   
+        front=0;
+        rear=max_size-1;
+        length=0;
+    }
+    public boolean isEmpty(){
+        if(length==0)
+            return true;
+        else 
+            return false;
+    }
+    public boolean isFull(){
+        if(length==max_size-1)
+            return true;
+        else
+            return false;
+    }
+    public void Enqueue(int element){
+        if(isFull())
+            System.out.println("Queue is Full......!");
+        else
+        {
+            rear=(rear+1)%max_size;
+            arr[rear]=element;
+            length++;
+        }
+    }
+    public void Dequeue()
+    {
+    if(isEmpty())
+        System.out.println(" Queue is already empty....!");
+    else
+    {
+        front=(front+1)%max_size;
+        length--;
+    }
+    }
+    public int Getfront(){
+        return arr[front];
+    }
+    public int Getrear(){
+        return arr[rear];
+    }
+  public void printQueue(){
+        int ff=front-1;
+        while(ff!=rear){
+            ff=(ff+1)%max_size;
+            System.out.print(" "+arr[ff]);
+        }
+    }
+  public int search(int element){
+     int index=-1;
+      if(isEmpty())
+          System.out.println("No items to search for .......!");
+      else
+      {
+        int ii=front-1;
+        while(ii!=rear){
+            ii=(ii+1)%max_size;
+            if(arr[ii]==element){
+                index=ii;
+                break;
+            }
+            if(index==-1){
+                if(arr[rear]==element)
+                    index=rear;
+            }
+        }
+      }
+      return index;
+  }
+}

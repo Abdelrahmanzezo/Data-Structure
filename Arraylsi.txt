@@ -1,0 +1,118 @@
+package javaapplication31;
+
+/**
+ *
+ * @author SH2
+ */
+import java.util.Scanner;
+public class ArrayList {
+    int size;
+    int length;
+    int []arr;
+    public ArrayList(int arrsize){
+        size=arrsize;
+        length=0;
+        arr=new int[arrsize];
+    }
+    public void Fill(){
+        int no_of_items;
+        System.out.println("How many items you want to fill");
+        no_of_items=new Scanner(System.in).nextInt();
+        if(no_of_items>size){
+            System.out.println("you cannot exceed the arraysize");
+            return;
+        }
+        else{
+            for(int i=0;i<no_of_items;i++){
+            System.out.println("Enter the item number "+i);
+            arr[i]=new Scanner(System.in).nextInt();
+            length++;
+            }
+        }
+    }
+    public void Display(){
+            System.out.println("Displaying the array content");
+        for(int i=0;i<length;i++){
+            System.out.print(arr[i]+" \t");
+        }
+    System.out.println();
+} 
+    public  int GetSize(){
+        return size;
+    }
+   public int Getlength(){
+       return length;
+   }
+   public int Search(int key){
+       int index=-1;
+       for(int i=0;i<length;i++){
+           if(arr[i]==key){
+               index=i;
+               break;
+           }
+           }
+        return index;
+       }
+   public void append(int newitem){
+    
+       if(length<size){
+           arr[length]=newitem;
+           length++;
+       }
+       else 
+           System.out.println("the array is Full");
+   }
+   public void insert(int index,int newitem){
+       if(index>=0 && index<size)
+       {
+           for(int i=length;i>index;i--){
+               arr[i]=arr[i-1];
+           }
+           arr[index]=newitem;
+           length++;
+       }
+       else
+           System.out.println("Error-index out of Range");
+   }
+   public void Delete(int index){
+       if(index>=0 && index<size)
+        {
+           for(int i=index;i<length-1;i++)
+               arr[i]=arr[i+1];
+               length--;
+       }else
+           System.out.println("Index out of range ");
+   }
+   public void Enlarge(int newsize){
+       if(newsize<=size)
+       {
+           System.out.println("the size must be larger than the old one");
+           return;
+       }
+       else{
+          size=newsize;
+          int[] old=arr;
+          arr=new int [newsize];
+          for(int i=0;i<length;i++){
+              arr[i]=old[i];
+          }
+          old=null;
+       }
+   }
+   public void Merge(int []other){
+       int newsize = size+ other.length;
+       size=newsize;
+       int []old=arr;
+       arr=new int[newsize];
+       int i;
+       for(i=0;i<length;i++){
+           arr[i]=old[i];
+       }
+       old=null;
+       int j=i;
+       for( i=0;i<other.length;i++){
+           arr[j++]=other[i];
+           length++;
+       }
+   }
+   }

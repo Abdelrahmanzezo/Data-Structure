@@ -1,0 +1,48 @@
+public class Stack {
+     int top;
+    int items[];
+    public Stack(){
+        top=-1;
+        items=new int[100];
+    }
+    public void push(int element ){
+         if(top>=100)
+            System.out.println("stack overflow !....");
+         else{
+        top++;
+        items[top]=element;
+          }
+    }
+    public boolean isempty(){
+        return (top==-1);
+    }
+    public void pop(){
+      if(isempty())
+          System.out.println("no items to delete ");
+      else 
+          top--;
+    }
+    public void print(){
+        for(int i=top;i>=0;i--){
+            System.out.print(items[i]+"  ");
+        }
+        
+    }
+    public void pop(int element){
+      if(isempty())
+          System.out.println("no items to delete ");
+      else 
+      {
+          element=items[top];
+          top--;
+      }
+    }
+    public int Gettop(){
+        int topelement=0;
+        if(isempty())
+            System.out.println("no items exist");
+        else
+        topelement =  items[top];
+        return topelement;
+    }
+}

@@ -1,0 +1,77 @@
+package javaapplication33;
+
+/**
+ *
+ * @author SH2
+ */
+public class Stack {
+    Node top;
+    
+    public Stack(){
+        top=null;
+    }
+    public boolean isEmpty(){
+        if(top==null)
+            return true;
+        else
+            return false;
+    }
+    public void isFull(){
+        Node ptr=new Node();
+        if(ptr==null)
+            System.out.println("The stack is full can not add more items ");
+    }
+    public void Push(int item){
+        Node newnode=new Node();
+        newnode.data=item;
+        if(isEmpty()){
+            newnode.next=null;
+            top=newnode;
+        }
+        else{
+            newnode.next=top;
+            top=newnode;
+        }
+    }
+    public void Display(){
+        Node temp=new Node();
+        temp=top;
+        while(temp!=null){
+            System.out.print(temp.data +"\t");
+            temp=temp.next;
+        }
+    }
+    public int pop(){
+        int deletedvalue;
+        Node delptr=new Node();
+        delptr=top;
+        deletedvalue=top.data;
+        top=top.next;
+        delptr=null;
+        return deletedvalue;
+    }
+    public int peek(){
+        return top.data;
+    }
+    public int counter(){
+      int counter=0;
+      Node temp=new Node();
+      temp=top;
+      while(temp!=null){
+          counter++;
+          temp=temp.next;
+      }
+      return counter;
+    }
+    public boolean isFound(int item){
+        boolean found=false;
+        Node temp=new Node();
+        temp=top;
+        while(temp!=null){
+            if(temp.data==item)
+                found=true;
+            temp=temp.next;
+        }
+        return found;
+    }
+}

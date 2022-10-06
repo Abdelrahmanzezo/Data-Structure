@@ -1,0 +1,113 @@
+package javaapplication31;
+
+/**
+ *
+ * @author SH2
+ */
+
+public class LinkedList {
+    Node head;
+    public LinkedList(){
+        head=null;
+       
+    }
+    boolean isempty(){
+        return(head==null);
+    }
+    public void insertfirst(int newvalue){
+      Node newnode=new Node();
+      newnode.data=newvalue;
+        if(isempty())
+        {
+            newnode.next=null;
+            head=newnode;
+        }else{
+            newnode.next=head;
+            head=newnode;
+        }
+       
+    }
+    public void Display(){
+        Node temp=new Node();
+        temp=head;
+        while(temp !=null){
+            System.out.print(temp.data +"\t");
+            temp=temp.next;
+        }
+    }
+    public int count(){
+        int counter=0;
+        Node temp=new Node();
+        temp=head;
+        while(temp!=null){
+            counter++;
+            temp=temp.next;
+        }
+        return counter;
+    }
+    public boolean isfound(int item){
+        boolean found=false;
+        Node temp=new Node();
+        temp=head;
+        while(temp!=null){
+            if(temp.data==item)
+                found=true;
+            temp=temp.next;
+        }
+        return found;
+    }
+    public void insertbefore(int item,int newvalue){
+       if(isempty()){
+           insertfirst(newvalue);
+       }
+        if(isfound(item)){
+        Node newnode =new Node();
+        newnode.data=newvalue;
+        Node temp=new Node();
+        temp=head;
+        while(temp!=null && temp.next.data !=item){
+            temp=temp.next;
+        }
+        newnode.next=temp.next;
+        temp.next=newnode;
+       }
+       else
+           System.out.println("Sorry, the item is not found ");
+    }
+    public void Append(int newvalue){
+        if(isempty())
+            insertfirst(newvalue);
+        else{
+           Node temp=new Node();
+           temp=head;
+           while(temp.next!=null){
+               temp=temp.next;
+           }
+            Node newnode=new Node();
+            newnode.data=newvalue;
+            temp.next=newnode;
+            newnode.next=null;
+        }
+    }
+    public void Delete(int item){
+        if(isempty())
+            System.out.println("the list is empty , no item to delete ");
+        Node delptr=new Node();
+        if(head.data==item){
+            delptr=head;
+            head=head.next;
+            delptr=null;
+        }
+        else{
+            Node prev=new Node();
+            prev=null;
+            delptr=head;
+            while(delptr.data!=item){
+                prev=delptr;
+                delptr=delptr.next;
+            }
+            prev.next=delptr.next;
+            delptr=null;
+        }
+    }
+}

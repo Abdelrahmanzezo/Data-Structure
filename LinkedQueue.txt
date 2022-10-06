@@ -1,0 +1,87 @@
+public class Queue {
+    Node front;
+    Node rear;
+    public Queue(){
+        front=rear=null;
+    }
+    public boolean isEmpty(){
+        if(front==null&& rear==null)
+            return true;
+        else
+            return false;
+    }
+    public void Enqueue(int item){
+        Node newnode=new Node();
+        newnode.data=item;
+        if(isEmpty()){
+            front =rear=newnode;
+        }else{
+            rear.next=newnode;
+            rear=newnode;
+        }
+        
+    }
+    public void display(){
+        if(isEmpty())
+            System.out.println("queue is empty,no items to display ");
+        else{
+        Node temp=new Node();
+        temp=front;
+        while(temp!=null){
+            System.out.print(temp.data+"\t");
+            temp=temp.next;
+        }
+        System.out.println();
+        }
+    }
+    public int Dequeue(){
+        int delvalue = -1;
+        if(isEmpty())
+            System.out.println("No item in the queue");
+        else if(front==rear){
+            front=null;
+            front=rear=null;
+        }
+        else{
+            Node delptr=new Node();
+            delptr=front;
+            delvalue=delptr.data;
+            front=front.next;
+            delptr=null;
+        }
+        return delvalue;
+    }
+    public int getFront(){
+        return front.data;
+    }
+    public int getRear(){
+        return rear.data;
+    }
+    public int counter(){
+        int counter=0;
+        Node temp=new Node();
+        temp=front;
+        while(temp!=null){
+            counter++;
+            temp=temp.next;
+        }
+        return counter;
+    }
+    public boolean isFound(int item){
+        boolean found=false;
+        Node temp=new Node();
+        temp=front;
+        while(temp!=null){
+            if(temp.data==item)
+                found=true;
+            temp=temp.next;
+        }
+        return found;
+    }
+    public void Clear(){
+        while(!isEmpty()){
+            Dequeue();
+        }
+    }
+    
+}
